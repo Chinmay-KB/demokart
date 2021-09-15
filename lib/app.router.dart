@@ -17,8 +17,8 @@ import 'screens/splash_screen/splash_view.dart';
 import 'utils/datamodels/product.dart';
 
 class Routes {
-  static const String homepageView = '/';
-  static const String splashView = '/splash-view';
+  static const String homepageView = '/homepage-view';
+  static const String splashView = '/';
   static const String checkoutView = '/checkout-view';
   static const String loginView = '/login-view';
   static const String productDetailView = '/product-detail-view';
@@ -46,7 +46,7 @@ class StackedRouter extends RouterBase {
   final _pagesMap = <Type, StackedRouteFactory>{
     HomepageView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const HomepageView(),
+        builder: (context) => HomepageView(),
         settings: data,
       );
     },

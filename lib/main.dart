@@ -10,6 +10,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   setupLocator();
+  setupSnackbarUi();
   runApp(MyApp());
 }
 
@@ -27,4 +28,15 @@ class MyApp extends StatelessWidget {
           accentColor: ACCENT_COLOR_LIGHT),
     );
   }
+}
+
+void setupSnackbarUi() {
+  final service = locator<SnackbarService>();
+
+  // Registers a config to be used when calling showSnackbar
+  service.registerSnackbarConfig(SnackbarConfig(
+    backgroundColor: Colors.white,
+    textColor: Colors.black,
+    mainButtonTextColor: Colors.black,
+  ));
 }

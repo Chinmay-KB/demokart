@@ -1,3 +1,4 @@
+import 'package:demokart/utils/themes/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -10,6 +11,7 @@ class SplashView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SplashViewModel>.reactive(
       viewModelBuilder: () => SplashViewModel(),
+      onModelReady: (model) => model.init(),
       builder: (
         BuildContext context,
         SplashViewModel model,
@@ -19,6 +21,7 @@ class SplashView extends StatelessWidget {
           body: Center(
             child: Text(
               'SplashView',
+              style: TEXT_HEADING_STYLE,
             ),
           ),
         );

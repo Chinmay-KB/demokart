@@ -15,10 +15,24 @@ class LoginView extends StatelessWidget {
         LoginViewModel model,
         Widget? child,
       ) {
-        return Scaffold(
-          body: Center(
-            child: Text(
-              'LoginView',
+        return SafeArea(
+          child: Scaffold(
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: TextButton(
+                    onPressed: model.onLogin,
+                    child: Text('Log in'),
+                  ),
+                ),
+                // Center(
+                //   child: TextButton(
+                //     onPressed: model.onLogout,
+                //     child: Text('Log out'),
+                //   ),
+                // ),
+              ],
             ),
           ),
         );

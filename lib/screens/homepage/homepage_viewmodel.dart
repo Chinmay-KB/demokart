@@ -3,7 +3,9 @@ import 'package:demokart/app.locator.dart';
 import 'package:demokart/app.router.dart';
 import 'package:demokart/utils/datamodels/carousel.dart';
 import 'package:demokart/utils/datamodels/product.dart';
+import 'package:demokart/utils/services/auth_service.dart';
 import 'package:demokart/utils/services/firestore_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -36,9 +38,11 @@ class HomepageViewModel extends BaseViewModel {
   late QuerySnapshot<Product> bestSellers;
   late QuerySnapshot<Product> newArrivals;
   late DocumentSnapshot<Carousel> carouselData;
+  late User? user;
 
   final _firestoreService = locator<FirestoreService>();
   final _navigatorService = locator<NavigationService>();
+  final _authService = locator<AuthService>();
 
   // ignore: avoid_void_async
   void init() async {
@@ -46,8 +50,16 @@ class HomepageViewModel extends BaseViewModel {
     bestSellers = await _firestoreService.getBestSellers();
     newArrivals = await _firestoreService.getNewArrivals();
     carouselData = await _firestoreService.getCarouselData();
+    user = await _authService.getUser();
     notifyListeners();
     setBusy(false);
+  }
+
+  logout() async {
+    await _authService.signOutFromGoogle();
+    if (!_authService.checkLoggedIn()) {
+      _navigatorService.navigateTo(Routes.splashView);
+    }
   }
 
   /// Added only to populate data on the backend for demoing purposes

@@ -60,8 +60,11 @@ class ProductDetailView extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           child: CarouselSlider.builder(
                               itemCount: 3,
-                              itemBuilder: (context, _, __) =>
-                                  CachedNetworkImage(imageUrl: product.imgUrl),
+                              itemBuilder: (context, _, __) => Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: CachedNetworkImage(
+                                        imageUrl: product.imgUrl),
+                                  ),
                               options: CarouselOptions(
                                   height: 300, enableInfiniteScroll: false)),
                         ),
@@ -194,7 +197,7 @@ class ProductDetailView extends StatelessWidget {
                                 height: 10,
                               ),
                               Text(
-                                'Description',
+                                'Similar Items',
                                 style: TEXT_HORIZONTAL_LIST_CARD_NAME_STYLE,
                               ),
                             ],
