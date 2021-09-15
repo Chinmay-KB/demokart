@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "401820697587",
+    "project_id": "baigana",
+    "storage_bucket": "baigana.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401820697587:android:3a52aec62bdb123c8d0886",
+        "android_client_info": {
+          "package_name": "com.example.weirdkart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401820697587-sj5ba3r4fmnfgmn3o0bfgeer6katljgl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.weirdkart",
+            "certificate_hash": "080254dad0362146ce0215e467951e3eb3fa6b15"
+          }
+        },
+        {
+          "client_id": "401820697587-ltr6ernuiiha3q1bnpim7gc9sbof2lua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxap42lLN-8RBqfSNRXCApC05FUXMjSps"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401820697587-ltr6ernuiiha3q1bnpim7gc9sbof2lua.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
