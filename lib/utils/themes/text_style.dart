@@ -11,3 +11,8 @@ final TEXT_HORIZONTAL_LIST_CARD_NAME_STYLE = GoogleFonts.notoSans(
 
 final TEXT_HORIZONTAL_LIST_CARD_PRICE_STYLE = GoogleFonts.notoSans(
     textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold));
+
+final TEXT_PRODUCT_DETAIL_TITLE = GoogleFonts.notoSans(
+    fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87);
+
+final TEXT_PRODUCT_DESC_BODY = GoogleFonts.notoSans();

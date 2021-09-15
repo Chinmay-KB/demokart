@@ -2,6 +2,10 @@ import 'package:demokart/utils/themes/text_style.dart';
 import 'package:flutter/material.dart';
 
 class RoundedAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const RoundedAppBar({this.isHomeScreen = false});
+
+  /// Hide title and menu drawer if the appbar is not shown on the home screen.
+  final bool isHomeScreen;
   @override
   Widget build(BuildContext context) {
     return SizedBox.fromSize(
@@ -35,15 +39,16 @@ class RoundedAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.menu,
-                    color: Colors.white,
+                    color: isHomeScreen ? Colors.white : Colors.transparent,
                     size: 26,
                   ),
                   Text(
                     'Demokart',
                     style: TEXT_HEADING_STYLE.copyWith(
-                        color: Colors.white, fontSize: 30),
+                        color: isHomeScreen ? Colors.white : Colors.transparent,
+                        fontSize: 30),
                   ),
                   const Icon(
                     Icons.search,

@@ -34,7 +34,9 @@ class HomepageView extends StatelessWidget {
                 ? const CircularProgressIndicator()
                 : Stack(
                     children: [
-                      RoundedAppBar(),
+                      const RoundedAppBar(
+                        isHomeScreen: true,
+                      ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,

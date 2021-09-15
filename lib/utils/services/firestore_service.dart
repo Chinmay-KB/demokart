@@ -10,6 +10,7 @@ class FirestoreService {
   static const FIRESTORE_PRODUCT_LIST_CATEGORY = 'list_category';
   static const FIRESTORE_PRODUCT_LIST_CATEGORY_BESTSELLER = 'bestseller';
   static const FIRESTORE_PRODUCT_LIST_CATEGORY_NEWARRIVAL = 'new_arrivals';
+  static const FIRESTORE_PRODUCT_TAGS = 'tags';
 
   static const FIRESTORE_CATEGORY_WISE = 'category_wise';
   static const FIRESTORE_CAROUSEL = 'carousel_items';
@@ -78,6 +79,16 @@ class FirestoreService {
           .withConverter<Carousel>(
               fromFirestore: (snapshot, _) =>
                   Carousel.fromMap(snapshot.data()!),
+              toFirestore: (model, _) => model.toMap())
+          .get();
+
+  /// Queries products in collection with similar tags.
+  Future<QuerySnapshot<Product>> getSimilarProducts(List<String> tags) async =>
+      _firestoreInstance
+          .collection(FIRESTORE_PRODUCT_COLLETION)
+          .where(FIRESTORE_PRODUCT_TAGS, arrayContainsAny: tags)
+          .withConverter<Product>(
+              fromFirestore: (snapshot, _) => Product.fromMap(snapshot.data()!),
               toFirestore: (model, _) => model.toMap())
           .get();
 }

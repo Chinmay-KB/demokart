@@ -61,8 +61,25 @@ class HorizontalListViewItem extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Text('₹${product.price.toInt()}',
-                        style: TEXT_HORIZONTAL_LIST_CARD_PRICE_STYLE),
+                    child: RichText(
+                      text: TextSpan(
+                        text: '₹${product.price.toInt()} ',
+                        style: GoogleFonts.notoSans(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: '₹${product.price.toInt() * 1.2}',
+                            style: GoogleFonts.notoSans(
+                                decoration: TextDecoration.lineThrough,
+                                color: Colors.black54,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ],
+                      ),
+                    ),
                   )
                 ],
               ),

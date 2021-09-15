@@ -9,7 +9,8 @@ class Product {
       required this.price,
       required this.productId,
       required this.sellerName,
-      required this.listCategory});
+      required this.listCategory,
+      required this.tags});
 
   List<String> about;
   String category;
@@ -21,12 +22,15 @@ class Product {
   String productId;
   String sellerName;
   List<String> listCategory;
+  List<String> tags;
 
   factory Product.fromMap(Map<String, dynamic> json) => Product(
         about:
             List<String>.from(json["about"].map((x) => x) as Iterable<dynamic>),
         listCategory: List<String>.from(
             json["list_category"].map((x) => x) as Iterable<dynamic>),
+        tags:
+            List<String>.from(json["tags"].map((x) => x) as Iterable<dynamic>),
         category: json["category"] as String,
         description: json["description"] as String,
         discount: json["discount"].toDouble() as double,
@@ -47,6 +51,7 @@ class Product {
         "price": price,
         "product_id": productId,
         "seller_name": sellerName,
-        "list_category": listCategory
+        "list_category": listCategory,
+        "tags": tags
       };
 }

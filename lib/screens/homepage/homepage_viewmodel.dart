@@ -12,7 +12,8 @@ class HomepageViewModel extends BaseViewModel {
   final testData = Product(
       about: ['About this product'],
       category: 'Paintings',
-      description: 'Description',
+      description:
+          'Beautiful ACEO original handmade watercolor painting of high tides in ocean/ realistic waves of sea/ monochrome blue paintings. The size of this painting is 21*14 cm. The shipping charge is INR 200.',
       discount: 0,
       imgUrl:
           'https://presell.crowdpouch.com/wp-content/uploads/2021/09/DG_P1_copy.png',
@@ -20,7 +21,15 @@ class HomepageViewModel extends BaseViewModel {
       price: 1000,
       productId: 'aefS',
       listCategory: [],
-      sellerName: 'Chinmay');
+      tags: [
+        'Home made',
+        'Canvas',
+        'Watercolor',
+        'Landscape',
+        'Wall Decor',
+        'Customized'
+      ],
+      sellerName: 'Homemade paintings');
 
   PaletteGenerator? paletteGenerator;
 
