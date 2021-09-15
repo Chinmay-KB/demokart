@@ -1,14 +1,3 @@
-// To parse this JSON data, do
-//
-//     final user = userFromMap(jsonString);
-
-import 'package:meta/meta.dart';
-import 'dart:convert';
-
-// User userFromMap(String str) => User.fromMap(json.decode(str));
-
-// String userToMap(User data) => json.encode(data.toMap());
-
 class User {
   User({
     required this.email,

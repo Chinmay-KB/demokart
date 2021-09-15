@@ -1,14 +1,3 @@
-// To parse this JSON data, do
-//
-//     final product = productFromMap(jsonString);
-
-import 'package:meta/meta.dart';
-import 'dart:convert';
-
-// Product productFromMap(String str) => Product.fromMap(json.decode(str));
-
-// String productToMap(Product data) => json.encode(data.toMap());
-
 class Product {
   Product(
       {required this.about,
@@ -34,10 +23,10 @@ class Product {
   List<String> listCategory;
 
   factory Product.fromMap(Map<String, dynamic> json) => Product(
-        about: List<String>.from(
-            (json["about"].map((x) => x)) as Iterable<dynamic>),
+        about:
+            List<String>.from(json["about"].map((x) => x) as Iterable<dynamic>),
         listCategory: List<String>.from(
-            (json["list_category"].map((x) => x)) as Iterable<dynamic>),
+            json["list_category"].map((x) => x) as Iterable<dynamic>),
         category: json["category"] as String,
         description: json["description"] as String,
         discount: json["discount"].toDouble() as double,

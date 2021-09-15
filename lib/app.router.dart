@@ -14,6 +14,7 @@ import 'screens/homepage/homepage_view.dart';
 import 'screens/login/login_view.dart';
 import 'screens/product_detail/product_detail_view.dart';
 import 'screens/splash_screen/splash_view.dart';
+import 'utils/datamodels/product.dart';
 
 class Routes {
   static const String homepageView = '/';
@@ -68,10 +69,25 @@ class StackedRouter extends RouterBase {
       );
     },
     ProductDetailView: (data) {
+      var args = data.getArgs<ProductDetailViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const ProductDetailView(),
+        builder: (context) => ProductDetailView(
+          key: args.key,
+          product: args.product,
+        ),
         settings: data,
       );
     },
   };
+}
+
+/// ************************************************************************
+/// Arguments holder classes
+/// *************************************************************************
+
+/// ProductDetailView arguments holder class
+class ProductDetailViewArguments {
+  final Key? key;
+  final Product product;
+  ProductDetailViewArguments({this.key, required this.product});
 }

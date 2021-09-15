@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:demokart/utils/datamodels/product.dart';
 import 'package:demokart/utils/themes/text_style.dart';
+import 'package:demokart/widgets/carousel_card.dart';
+import 'package:demokart/widgets/carousel_widget.dart';
 import 'package:demokart/widgets/horizontal_listview_item.dart';
 import 'package:demokart/widgets/rounded_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +31,7 @@ class HomepageView extends StatelessWidget {
               onPressed: () => model.onAddProduct(),
             ),
             body: model.isBusy
-                ? CircularProgressIndicator()
+                ? const CircularProgressIndicator()
                 : Stack(
                     children: [
                       RoundedAppBar(),
@@ -37,27 +39,9 @@ class HomepageView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CarouselSlider.builder(
-                              itemCount: 3,
-                              itemBuilder: (context, backIndex, currentIndex) =>
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(12),
-                                      child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.8,
-                                        color: Theme.of(context).primaryColor,
-                                        child:
-                                            Text('Category number $backIndex'),
-                                      ),
-                                    ),
-                                  ),
-                              options: CarouselOptions(
-                                  autoPlay: true,
-                                  enlargeCenterPage: true,
-                                  aspectRatio: 3)),
+                          CarouselWidget(
+                            carouselData: model.carouselData.data()!,
+                          ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 8),
                             child:
@@ -72,6 +56,7 @@ class HomepageView extends StatelessWidget {
                                 itemBuilder: (BuildContext context,
                                         int index) =>
                                     HorizontalListViewItem(
+                                      onTap: model.onTapProduct,
                                       product:
                                           model.bestSellers.docs[index].data(),
                                     )),
@@ -92,6 +77,7 @@ class HomepageView extends StatelessWidget {
                                     HorizontalListViewItem(
                                       product:
                                           model.newArrivals.docs[index].data(),
+                                      onTap: model.onTapProduct,
                                     )),
                           ),
                         ],

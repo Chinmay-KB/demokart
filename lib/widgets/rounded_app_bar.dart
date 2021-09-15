@@ -36,8 +36,8 @@ class RoundedAppBar extends StatelessWidget implements PreferredSizeWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Icon(
-                    Icons.search,
-                    color: Colors.transparent,
+                    Icons.menu,
+                    color: Colors.white,
                     size: 26,
                   ),
                   Text(
