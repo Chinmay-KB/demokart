@@ -16,6 +16,7 @@ class CartViewModel extends BaseViewModel {
 
   List<Product> cartItems = [];
   late int totalCost = 0;
+  late bool isCartEmpty;
   late User? _user;
   Future<void> init() async {
     setBusy(true);
@@ -24,6 +25,7 @@ class CartViewModel extends BaseViewModel {
     _user = await _authService.getUser();
     final _cartItemsId =
         (await _firestoreService.getUserData(uid: _user!.uid)).data()!.cart;
+    isCartEmpty = _cartItemsId.length == 0;
     _cartItemsId.forEach((element) async {
       final _individualProduct =
           await _firestoreService.getSingleProduct(element);

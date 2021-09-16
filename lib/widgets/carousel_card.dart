@@ -36,11 +36,15 @@ class CarouselCard extends StatelessWidget {
               else
                 SizedBox(),
               Flexible(
-                child: Text(
-                  carouselItem.text,
-                  maxLines: 2,
-                  style: TEXT_HORIZONTAL_LIST_CARD_PRICE_STYLE.copyWith(
-                      color: Colors.white),
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text(
+                    carouselItem.text,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: TEXT_HORIZONTAL_LIST_CARD_PRICE_STYLE.copyWith(
+                        color: Colors.white),
+                  ),
                 ),
               ),
             ],
