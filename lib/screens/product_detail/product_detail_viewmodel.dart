@@ -19,8 +19,11 @@ class ProductDetailViewModel extends BaseViewModel {
 
   late QuerySnapshot<Product> similarProducts;
   late User? _user;
-  void init(Product product) async {
+  late Product product;
+
+  void init(String productId) async {
     setBusy(true);
+    product = (await _firestoreService.getSingleProduct(productId)).data()!;
     product.tags.shuffle();
     _user = await _authService.getUser();
     similarProducts = await _firestoreService.getSimilarProducts(product.tags);
@@ -30,12 +33,11 @@ class ProductDetailViewModel extends BaseViewModel {
   /// Handles user selecting any product on any list
   void onTapProduct(Product product) {
     _navigatorService.navigateTo(Routes.productDetailView,
-        arguments: ProductDetailViewArguments(product: product));
+        arguments: ProductDetailViewArguments(productId: product.productId));
   }
 
-  Future<void> addToCart(Product product) async {
-    await _firestoreService.addToCart(
-        uid: _user!.uid, productId: product.productId);
+  Future<void> addToCart(String productId) async {
+    await _firestoreService.addToCart(uid: _user!.uid, productId: productId);
     _snackbarService.showSnackbar(message: 'Added to cart');
   }
 }

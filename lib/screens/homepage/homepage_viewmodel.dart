@@ -72,8 +72,15 @@ class HomepageViewModel extends BaseViewModel {
   /// Handles user selecting any product on any list
   void onTapProduct(Product product) {
     _navigatorService.navigateTo(Routes.productDetailView,
-        arguments: ProductDetailViewArguments(product: product));
+        arguments: ProductDetailViewArguments(productId: product.productId));
   }
 
   void navigateToCart() => _navigatorService.navigateTo(Routes.cartView);
+
+  void carouselTap(String productId) {
+    if (productId != "") {
+      _navigatorService.navigateTo(Routes.productDetailView,
+          arguments: ProductDetailViewArguments(productId: productId));
+    }
+  }
 }

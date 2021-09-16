@@ -84,7 +84,7 @@ class StackedRouter extends RouterBase {
       return MaterialPageRoute<dynamic>(
         builder: (context) => ProductDetailView(
           key: args.key,
-          product: args.product,
+          productId: args.productId,
         ),
         settings: data,
       );
@@ -118,6 +118,6 @@ class CheckoutViewArguments {
 /// ProductDetailView arguments holder class
 class ProductDetailViewArguments {
   final Key? key;
-  final Product product;
-  ProductDetailViewArguments({this.key, required this.product});
+  final String productId;
+  ProductDetailViewArguments({this.key, required this.productId});
 }

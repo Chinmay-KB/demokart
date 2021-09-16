@@ -14,14 +14,15 @@ import 'package:stacked/stacked.dart';
 import 'product_detail_viewmodel.dart';
 
 class ProductDetailView extends StatelessWidget {
-  const ProductDetailView({Key? key, required this.product}) : super(key: key);
-  final Product product;
+  const ProductDetailView({Key? key, required this.productId})
+      : super(key: key);
+  final String productId;
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ProductDetailViewModel>.reactive(
       viewModelBuilder: () => ProductDetailViewModel(),
-      onModelReady: (model) => model.init(product),
+      onModelReady: (model) => model.init(productId),
       builder: (
         BuildContext context,
         ProductDetailViewModel model,
@@ -36,7 +37,7 @@ class ProductDetailView extends StatelessWidget {
                     shape: StadiumBorder(),
                     primary: Colors.white,
                     backgroundColor: Theme.of(context).accentColor),
-                onPressed: () => model.addToCart(product),
+                onPressed: () => model.addToCart(productId),
                 icon: Icon(Icons.add_shopping_cart_rounded),
                 label: Text('Add to cart')),
             backgroundColor: Colors.grey.shade200,
@@ -54,7 +55,7 @@ class ProductDetailView extends StatelessWidget {
                               itemBuilder: (context, _, __) => Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: CachedNetworkImage(
-                                        imageUrl: product.imgUrl),
+                                        imageUrl: model.product.imgUrl),
                                   ),
                               options: CarouselOptions(
                                   height: 300, enableInfiniteScroll: false)),
@@ -76,7 +77,7 @@ class ProductDetailView extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          product.name,
+                                          model.product.name,
                                           style: TEXT_PRODUCT_DETAIL_TITLE,
                                         ),
                                         RichText(
@@ -86,7 +87,8 @@ class ProductDetailView extends StatelessWidget {
                                                 TEXT_HORIZONTAL_LIST_CARD_NAME_STYLE,
                                             children: <TextSpan>[
                                               TextSpan(
-                                                  text: product.sellerName,
+                                                  text:
+                                                      model.product.sellerName,
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.bold)),
@@ -132,7 +134,8 @@ class ProductDetailView extends StatelessWidget {
                                     flex: 2,
                                     child: RichText(
                                       text: TextSpan(
-                                        text: '₹${product.price.toInt()} ',
+                                        text:
+                                            '₹${model.product.price.toInt()} ',
                                         style: GoogleFonts.notoSans(
                                             color: Colors.black,
                                             fontSize: 18,
@@ -140,7 +143,7 @@ class ProductDetailView extends StatelessWidget {
                                         children: <TextSpan>[
                                           TextSpan(
                                               text:
-                                                  '₹${product.price.toInt() * 1.2}',
+                                                  '₹${model.product.price.toInt() * 1.2}',
                                               style: GoogleFonts.notoSans(
                                                   decoration: TextDecoration
                                                       .lineThrough,
@@ -162,7 +165,7 @@ class ProductDetailView extends StatelessWidget {
                                 style: TEXT_HORIZONTAL_LIST_CARD_NAME_STYLE,
                               ),
                               Text(
-                                product.description,
+                                model.product.description,
                                 style: TEXT_PRODUCT_DESC_BODY,
                               ),
                               const SizedBox(
@@ -175,10 +178,10 @@ class ProductDetailView extends StatelessWidget {
                               Wrap(
                                 spacing: 8,
                                 children: List<Chip>.generate(
-                                  product.tags.length,
+                                  model.product.tags.length,
                                   (index) => Chip(
                                     label: Text(
-                                      product.tags[index],
+                                      model.product.tags[index],
                                       style: GoogleFonts.notoSans(fontSize: 10),
                                     ),
                                   ),

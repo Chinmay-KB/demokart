@@ -119,6 +119,7 @@ class HomepageView extends StatelessWidget {
                         ),
                         CarouselWidget(
                           carouselData: model.carouselData.data()!,
+                          onTap: model.carouselTap,
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8),
