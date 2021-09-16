@@ -12,7 +12,6 @@ import 'package:stacked/stacked.dart';
 import 'screens/cart/cart_view.dart';
 import 'screens/checkout/checkout_view.dart';
 import 'screens/homepage/homepage_view.dart';
-import 'screens/login/login_view.dart';
 import 'screens/product_detail/product_detail_view.dart';
 import 'screens/splash_screen/splash_view.dart';
 import 'utils/datamodels/product.dart';
@@ -21,14 +20,12 @@ class Routes {
   static const String homepageView = '/homepage-view';
   static const String splashView = '/';
   static const String checkoutView = '/checkout-view';
-  static const String loginView = '/login-view';
   static const String productDetailView = '/product-detail-view';
   static const String cartView = '/cart-view';
   static const all = <String>{
     homepageView,
     splashView,
     checkoutView,
-    loginView,
     productDetailView,
     cartView,
   };
@@ -41,7 +38,6 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.homepageView, page: HomepageView),
     RouteDef(Routes.splashView, page: SplashView),
     RouteDef(Routes.checkoutView, page: CheckoutView),
-    RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.productDetailView, page: ProductDetailView),
     RouteDef(Routes.cartView, page: CartView),
   ];
@@ -70,12 +66,6 @@ class StackedRouter extends RouterBase {
           key: args.key,
           items: args.items,
         ),
-        settings: data,
-      );
-    },
-    LoginView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const LoginView(),
         settings: data,
       );
     },

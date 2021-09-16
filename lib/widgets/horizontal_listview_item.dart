@@ -45,7 +45,7 @@ class HorizontalListViewItem extends StatelessWidget {
                         placeholder: (context, val) => Shimmer.fromColors(
                           baseColor: Colors.grey[300]!,
                           highlightColor: Colors.grey[100]!,
-                          child: Container(
+                          child: const SizedBox(
                             height: 140,
                             width: 140,
                           ),

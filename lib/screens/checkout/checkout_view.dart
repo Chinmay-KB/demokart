@@ -1,12 +1,10 @@
 import 'package:demokart/utils/datamodels/product.dart';
-import 'package:demokart/utils/themes/colors.dart';
 import 'package:demokart/utils/themes/text_style.dart';
 import 'package:demokart/widgets/checkout_address_widget.dart';
 import 'package:demokart/widgets/checkout_payment.dart';
 import 'package:demokart/widgets/checkout_summary.dart';
 import 'package:demokart/widgets/simple_appbar.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 
 import 'checkout_viewmodel.dart';
@@ -47,7 +45,7 @@ class CheckoutView extends StatelessWidget {
                       paymentOptions: model.paymentOptions,
                       selectedIndex: model.selectedPayment,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 100,
                     ),
                   ],

@@ -23,7 +23,7 @@ class LoginView extends StatelessWidget {
                 Center(
                   child: TextButton(
                     onPressed: model.onLogin,
-                    child: Text('Log in'),
+                    child: const Text('Log in'),
                   ),
                 ),
                 // Center(

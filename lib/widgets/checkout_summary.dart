@@ -46,7 +46,7 @@ class CheckoutSummary extends StatelessWidget {
                   ],
                 ),
               ),
-              Divider(
+              const Divider(
                 height: 1,
               ),
               Row(

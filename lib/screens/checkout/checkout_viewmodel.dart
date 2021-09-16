@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:demokart/app.locator.dart';
 import 'package:demokart/app.router.dart';
-import 'package:demokart/utils/datamodels/product.dart';
 import 'package:demokart/utils/services/auth_service.dart';
 import 'package:demokart/utils/services/firestore_service.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +33,7 @@ class CheckoutViewModel extends BaseViewModel {
 
   String? optionalFormField(String? value) => null;
 
-  proceedToPayment() async {
+  void proceedToPayment() async {
     if (formKey.currentState!.validate()) {
       final _user = await _authService.getUser();
       _firestoreService.emptyCart(uid: _user!.uid);

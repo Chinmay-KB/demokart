@@ -20,7 +20,7 @@ class CarouselCard extends StatelessWidget {
         child: Container(
           width: MediaQuery.of(context).size.width * 0.8,
           color: Color(
-            int.parse('0xff' + carouselItem.color),
+            int.parse('0xff${carouselItem.color}'),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -34,7 +34,7 @@ class CarouselCard extends StatelessWidget {
                   ),
                 )
               else
-                SizedBox(),
+                const SizedBox(),
               Flexible(
                 child: Padding(
                   padding: const EdgeInsets.all(4.0),

@@ -1,14 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:demokart/utils/themes/colors.dart';
 import 'package:demokart/utils/themes/text_style.dart';
-import 'package:demokart/widgets/carousel_card.dart';
 import 'package:demokart/widgets/carousel_widget.dart';
 import 'package:demokart/widgets/horizontal_listview_item.dart';
 import 'package:demokart/widgets/loading_widget.dart';
-import 'package:demokart/widgets/rounded_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 
 import 'homepage_viewmodel.dart';
@@ -34,9 +29,8 @@ class HomepageView extends StatelessWidget {
                 ? const SizedBox()
                 : Drawer(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Row(
@@ -56,20 +50,27 @@ class HomepageView extends StatelessWidget {
                                   TextSpan(
                                       text: model.user!.displayName!
                                           .split(' ')[0],
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontWeight: FontWeight.bold)),
                                 ],
                               ),
                             ),
                           ],
                         ),
-                        TextButton.icon(
-                            onPressed: model.logout,
-                            icon: Icon(
-                              Icons.logout_rounded,
-                              color: Colors.amber,
-                            ),
-                            label: Text('Logout'))
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Divider(
+                          height: 6,
+                        ),
+                        ListTile(
+                          onTap: model.logout,
+                          title: Text(
+                            'Logout',
+                            style: TEXT_HEADING_STYLE.copyWith(
+                                color: Colors.black),
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -77,8 +78,7 @@ class HomepageView extends StatelessWidget {
               backgroundColor: ACCENT_COLOR_LIGHT,
               automaticallyImplyLeading: false,
               title: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+                padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -109,7 +109,7 @@ class HomepageView extends StatelessWidget {
             ),
             backgroundColor: Colors.grey.shade200,
             body: model.isBusy
-                ? LoadingWidget()
+                ? const LoadingWidget()
                 : SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,11 +171,10 @@ class HomepageView extends StatelessWidget {
                                   onTap: model.onTapProduct),
                           gridDelegate:
                               SliverGridDelegateWithMaxCrossAxisExtent(
-                                  maxCrossAxisExtent:
-                                      MediaQuery.of(context).size.width / 2,
-                                  childAspectRatio: 150 / 160,
-                                  crossAxisSpacing: 0,
-                                  mainAxisSpacing: 0),
+                            maxCrossAxisExtent:
+                                MediaQuery.of(context).size.width / 2,
+                            childAspectRatio: 150 / 160,
+                          ),
                         )
                       ],
                     ),

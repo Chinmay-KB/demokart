@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:demokart/screens/checkout/checkout_viewmodel.dart';
 import 'package:demokart/utils/themes/colors.dart';
 import 'package:demokart/utils/themes/text_style.dart';
@@ -33,7 +31,7 @@ class CheckoutPayment extends StatelessWidget {
                 'Payment mode',
                 style: TEXT_HORIZONTAL_LIST_CARD_PRICE_STYLE,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               ListView.builder(

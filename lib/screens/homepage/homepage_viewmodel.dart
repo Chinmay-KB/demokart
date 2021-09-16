@@ -57,10 +57,11 @@ class HomepageViewModel extends BaseViewModel {
     setBusy(false);
   }
 
-  logout() async {
+  void logout() async {
     await _authService.signOutFromGoogle();
     if (!_authService.checkLoggedIn()) {
-      _navigatorService.navigateTo(Routes.splashView);
+      _navigatorService.pushNamedAndRemoveUntil(Routes.splashView,
+          predicate: (routes) => false);
     }
   }
 

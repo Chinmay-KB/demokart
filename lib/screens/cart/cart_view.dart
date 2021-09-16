@@ -1,13 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:demokart/utils/datamodels/product.dart';
-import 'package:demokart/utils/themes/colors.dart';
 import 'package:demokart/utils/themes/text_style.dart';
 import 'package:demokart/widgets/cart_list_item_card.dart';
 import 'package:demokart/widgets/loading_widget.dart';
 import 'package:demokart/widgets/simple_appbar.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:stacked/stacked.dart';
 
 import 'cart_viewmodel.dart';
@@ -87,13 +82,13 @@ class CartView extends StatelessWidget {
                                           children: <TextSpan>[
                                             TextSpan(
                                               text: '₹${model.totalCost}',
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontWeight: FontWeight.bold),
                                             ),
                                           ],
                                         ),
                                       ),
-                                    if (!model.isCartEmpty) Spacer(),
+                                    if (!model.isCartEmpty) const Spacer(),
                                     Text(
                                       'Checkout',
                                       style:
@@ -102,7 +97,7 @@ class CartView extends StatelessWidget {
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold),
                                     ),
-                                    Icon(
+                                    const Icon(
                                       Icons.arrow_forward_ios,
                                       color: Colors.white,
                                     )

@@ -11,7 +11,6 @@ import '../../app.locator.dart';
 class CartViewModel extends BaseViewModel {
   final _firestoreService = locator<FirestoreService>();
   final _authService = locator<AuthService>();
-  final _snackbarService = locator<SnackbarService>();
   final _navigationService = locator<NavigationService>();
 
   List<Product> cartItems = [];
@@ -25,7 +24,7 @@ class CartViewModel extends BaseViewModel {
     _user = await _authService.getUser();
     final _cartItemsId =
         (await _firestoreService.getUserData(uid: _user!.uid)).data()!.cart;
-    isCartEmpty = _cartItemsId.length == 0;
+    isCartEmpty = _cartItemsId.isEmpty;
     _cartItemsId.forEach((element) async {
       final _individualProduct =
           await _firestoreService.getSingleProduct(element);
@@ -42,8 +41,8 @@ class CartViewModel extends BaseViewModel {
     init();
   }
 
-  /// Passes list of
-  navigateToCheckout() {
+  /// Passes list of all products for checkout to checkout page
+  void navigateToCheckout() {
     _navigationService.navigateTo(
       Routes.checkoutView,
       arguments: CheckoutViewArguments(items: cartItems),

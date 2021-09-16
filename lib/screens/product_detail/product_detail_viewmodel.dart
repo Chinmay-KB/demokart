@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:demokart/app.locator.dart';
 import 'package:demokart/utils/datamodels/product.dart';
@@ -21,7 +19,7 @@ class ProductDetailViewModel extends BaseViewModel {
   late User? _user;
   late Product product;
 
-  void init(String productId) async {
+  Future<void> init(String productId) async {
     setBusy(true);
     product = (await _firestoreService.getSingleProduct(productId)).data()!;
     product.tags.shuffle();

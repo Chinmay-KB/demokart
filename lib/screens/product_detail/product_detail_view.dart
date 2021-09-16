@@ -1,11 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:demokart/utils/datamodels/product.dart';
-import 'package:demokart/utils/themes/colors.dart';
 import 'package:demokart/utils/themes/text_style.dart';
 import 'package:demokart/widgets/horizontal_listview_item.dart';
 import 'package:demokart/widgets/loading_widget.dart';
-import 'package:demokart/widgets/rounded_app_bar.dart';
 import 'package:demokart/widgets/simple_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,18 +29,18 @@ class ProductDetailView extends StatelessWidget {
           child: Scaffold(
             floatingActionButton: TextButton.icon(
                 style: TextButton.styleFrom(
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     elevation: 4,
-                    shape: StadiumBorder(),
+                    shape: const StadiumBorder(),
                     primary: Colors.white,
                     backgroundColor: Theme.of(context).accentColor),
                 onPressed: () => model.addToCart(productId),
-                icon: Icon(Icons.add_shopping_cart_rounded),
-                label: Text('Add to cart')),
+                icon: const Icon(Icons.add_shopping_cart_rounded),
+                label: const Text('Add to cart')),
             backgroundColor: Colors.grey.shade200,
-            appBar: SimpleAppbar(title: 'Product details'),
+            appBar: const SimpleAppbar(title: 'Product details'),
             body: model.isBusy
-                ? LoadingWidget()
+                ? const LoadingWidget()
                 : SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +86,7 @@ class ProductDetailView extends StatelessWidget {
                                               TextSpan(
                                                   text:
                                                       model.product.sellerName,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                       fontWeight:
                                                           FontWeight.bold)),
                                             ],
@@ -98,7 +95,7 @@ class ProductDetailView extends StatelessWidget {
                                         Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            Icon(
+                                            const Icon(
                                               Icons.star,
                                               color: Colors.amber,
                                               size: 28,

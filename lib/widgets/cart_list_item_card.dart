@@ -36,7 +36,7 @@ class CartListItem extends StatelessWidget {
                       placeholder: (context, val) => Shimmer.fromColors(
                         baseColor: Colors.grey[300]!,
                         highlightColor: Colors.grey[100]!,
-                        child: Container(
+                        child: const SizedBox(
                           height: 140,
                           width: 140,
                         ),
@@ -51,8 +51,6 @@ class CartListItem extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
                     children: [
                       Text(
                         product.name + product.name,
@@ -86,14 +84,15 @@ class CartListItem extends StatelessWidget {
                           children: <TextSpan>[
                             TextSpan(
                                 text: product.sellerName,
-                                style: TextStyle(fontWeight: FontWeight.bold)),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold)),
                           ],
                         ),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.star,
                             color: Colors.amber,
                             size: 28,
@@ -126,8 +125,8 @@ class CartListItem extends StatelessWidget {
                           //     borderRadius: BorderRadius.circular(8)),
                         ),
                         onPressed: () => onRemove(product.productId),
-                        icon: Icon(Icons.delete_rounded),
-                        label: Text('Remove'),
+                        icon: const Icon(Icons.delete_rounded),
+                        label: const Text('Remove'),
                       )
                     ],
                   ),
