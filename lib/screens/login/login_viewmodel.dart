@@ -26,7 +26,8 @@ class LoginViewModel extends BaseViewModel {
                 name: _userData.displayName!,
                 cart: []));
       }
-      _navigationService.navigateTo(Routes.homepageView);
+      _navigationService.pushNamedAndRemoveUntil(Routes.homepageView,
+          predicate: (route) => false);
     } else {
       _snackbarService.showSnackbar(message: 'Error');
     }

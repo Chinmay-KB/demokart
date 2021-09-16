@@ -13,7 +13,8 @@ class SplashViewModel extends BaseViewModel {
     setBusy(true);
     await Future.delayed(const Duration(seconds: 2));
     if (_authService.checkLoggedIn()) {
-      _navigationService.navigateTo(Routes.homepageView);
+      _navigationService.pushNamedAndRemoveUntil(Routes.homepageView,
+          predicate: (route) => false);
     } else {
       _navigationService.navigateTo(Routes.loginView);
     }

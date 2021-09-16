@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:demokart/screens/checkout/checkout_viewmodel.dart';
 import 'package:demokart/utils/themes/colors.dart';
 import 'package:demokart/utils/themes/text_style.dart';
@@ -56,7 +58,7 @@ class CheckoutPayment extends StatelessWidget {
                               ? Colors.white
                               : Colors.grey),
                     ),
-                    onTap: () => onSelect,
+                    onTap: () => onSelect(index),
                   ),
                 ),
               ),

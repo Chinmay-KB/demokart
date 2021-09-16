@@ -38,8 +38,9 @@ class HorizontalListViewItem extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
                       child: CachedNetworkImage(
-                        fit: BoxFit.fitHeight,
+                        fit: BoxFit.fill,
                         height: 130,
+                        width: 180,
                         imageUrl: product.imgUrl,
                         placeholder: (context, val) => Shimmer.fromColors(
                           baseColor: Colors.grey[300]!,

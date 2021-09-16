@@ -151,14 +151,11 @@ class FirestoreService {
         "cart": FieldValue.arrayRemove([productId])
       });
 
-  Future<void> emptyCart(
-          {required String uid, required String productId}) async =>
-      _firestoreInstance
-          .collection(FIRESTORE_USER_COLLECTION)
-          .withConverter<UserData>(
-              fromFirestore: (snapshot, _) =>
-                  UserData.fromMap(snapshot.data()!),
-              toFirestore: (model, _) => model.toMap())
-          .doc(uid)
-          .update({"cart": []});
+  Future<void> emptyCart({required String uid}) async => _firestoreInstance
+      .collection(FIRESTORE_USER_COLLECTION)
+      .withConverter<UserData>(
+          fromFirestore: (snapshot, _) => UserData.fromMap(snapshot.data()!),
+          toFirestore: (model, _) => model.toMap())
+      .doc(uid)
+      .update({"cart": []});
 }

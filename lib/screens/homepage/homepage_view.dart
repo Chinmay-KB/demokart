@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:demokart/utils/themes/colors.dart';
 import 'package:demokart/utils/themes/text_style.dart';
 import 'package:demokart/widgets/carousel_card.dart';
 import 'package:demokart/widgets/carousel_widget.dart';
@@ -73,6 +74,7 @@ class HomepageView extends StatelessWidget {
                     ),
                   ),
             appBar: AppBar(
+              backgroundColor: ACCENT_COLOR_LIGHT,
               automaticallyImplyLeading: false,
               title: Padding(
                 padding:
@@ -106,53 +108,76 @@ class HomepageView extends StatelessWidget {
               ),
             ),
             backgroundColor: Colors.grey.shade200,
-            floatingActionButton: FloatingActionButton(
-              onPressed: () => model.onAddProduct(),
-            ),
             body: model.isBusy
                 ? LoadingWidget()
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      CarouselWidget(
-                        carouselData: model.carouselData.data()!,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Text('Bestsellers', style: TEXT_HEADING_STYLE),
-                      ),
-                      SizedBox(
-                        height: 220,
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: model.bestSellers.docs.length,
-                            itemBuilder: (BuildContext context, int index) =>
-                                HorizontalListViewItem(
-                                  onTap: model.onTapProduct,
-                                  product: model.bestSellers.docs[index].data(),
-                                )),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Text('New Arrivals', style: TEXT_HEADING_STYLE),
-                      ),
-                      SizedBox(
-                        height: 220,
-                        child: ListView.builder(
+                : SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        CarouselWidget(
+                          carouselData: model.carouselData.data()!,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Text('Bestsellers', style: TEXT_HEADING_STYLE),
+                        ),
+                        SizedBox(
+                          height: 220,
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: model.bestSellers.docs.length,
+                              itemBuilder: (BuildContext context, int index) =>
+                                  HorizontalListViewItem(
+                                    onTap: model.onTapProduct,
+                                    product:
+                                        model.bestSellers.docs[index].data(),
+                                  )),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child:
+                              Text('New Arrivals', style: TEXT_HEADING_STYLE),
+                        ),
+                        SizedBox(
+                          height: 220,
+                          child: ListView.builder(
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
                             itemCount: model.newArrivals.docs.length,
                             itemBuilder: (BuildContext context, int index) =>
                                 HorizontalListViewItem(
-                                  product: model.newArrivals.docs[index].data(),
-                                  onTap: model.onTapProduct,
-                                )),
-                      ),
-                    ],
+                              product: model.newArrivals.docs[index].data(),
+                              onTap: model.onTapProduct,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child:
+                              Text('All products', style: TEXT_HEADING_STYLE),
+                        ),
+                        GridView.builder(
+                          itemCount: model.allProducts.docs.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) =>
+                              HorizontalListViewItem(
+                                  product: model.allProducts.docs[index].data(),
+                                  onTap: model.onTapProduct),
+                          gridDelegate:
+                              SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent:
+                                      MediaQuery.of(context).size.width / 2,
+                                  childAspectRatio: 150 / 160,
+                                  crossAxisSpacing: 0,
+                                  mainAxisSpacing: 0),
+                        )
+                      ],
+                    ),
                   ),
           ),
         );

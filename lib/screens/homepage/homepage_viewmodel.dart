@@ -38,6 +38,7 @@ class HomepageViewModel extends BaseViewModel {
   late QuerySnapshot<Product> bestSellers;
   late QuerySnapshot<Product> newArrivals;
   late DocumentSnapshot<Carousel> carouselData;
+  late QuerySnapshot<Product> allProducts;
   late User? user;
 
   final _firestoreService = locator<FirestoreService>();
@@ -50,6 +51,7 @@ class HomepageViewModel extends BaseViewModel {
     bestSellers = await _firestoreService.getBestSellers();
     newArrivals = await _firestoreService.getNewArrivals();
     carouselData = await _firestoreService.getCarouselData();
+    allProducts = await _firestoreService.getAllProducts();
     user = await _authService.getUser();
     notifyListeners();
     setBusy(false);
