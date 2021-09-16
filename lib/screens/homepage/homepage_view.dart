@@ -4,6 +4,7 @@ import 'package:demokart/utils/themes/text_style.dart';
 import 'package:demokart/widgets/carousel_card.dart';
 import 'package:demokart/widgets/carousel_widget.dart';
 import 'package:demokart/widgets/horizontal_listview_item.dart';
+import 'package:demokart/widgets/loading_widget.dart';
 import 'package:demokart/widgets/rounded_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -109,11 +110,11 @@ class HomepageView extends StatelessWidget {
               onPressed: () => model.onAddProduct(),
             ),
             body: model.isBusy
-                ? Center(child: const CircularProgressIndicator())
+                ? LoadingWidget()
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       CarouselWidget(

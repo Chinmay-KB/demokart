@@ -3,6 +3,8 @@ import 'package:demokart/utils/datamodels/product.dart';
 import 'package:demokart/utils/themes/colors.dart';
 import 'package:demokart/utils/themes/text_style.dart';
 import 'package:demokart/widgets/cart_list_item_card.dart';
+import 'package:demokart/widgets/loading_widget.dart';
+import 'package:demokart/widgets/simple_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
@@ -24,26 +26,10 @@ class CartView extends StatelessWidget {
         Widget? child,
       ) {
         return Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            leading: GestureDetector(
-              onTap: () => Navigator.of(context).pop(),
-              child: const Icon(
-                Icons.arrow_back_ios_new_rounded,
-                color: Colors.white,
-              ),
-            ),
-            backgroundColor: Theme.of(context).accentColor,
-            title: Text(
-              'Cart',
-              style: TEXT_HEADING_STYLE.copyWith(color: Colors.white),
-            ),
-          ),
+          appBar: const SimpleAppbar(title: 'Cart'),
           backgroundColor: Colors.grey.shade200,
           body: model.isBusy
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
+              ? const LoadingWidget()
               : Stack(
                   children: [
                     ListView.builder(

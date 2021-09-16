@@ -1,9 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:demokart/utils/datamodels/product.dart';
+import 'package:demokart/utils/themes/colors.dart';
 import 'package:demokart/utils/themes/text_style.dart';
 import 'package:demokart/widgets/horizontal_listview_item.dart';
+import 'package:demokart/widgets/loading_widget.dart';
 import 'package:demokart/widgets/rounded_app_bar.dart';
+import 'package:demokart/widgets/simple_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
@@ -37,21 +40,9 @@ class ProductDetailView extends StatelessWidget {
                 icon: Icon(Icons.add_shopping_cart_rounded),
                 label: Text('Add to cart')),
             backgroundColor: Colors.grey.shade200,
-            appBar: AppBar(
-              backgroundColor: Theme.of(context).accentColor,
-              automaticallyImplyLeading: false,
-              leading: GestureDetector(
-                onTap: () => Navigator.of(context).pop(),
-                child: const Icon(
-                  Icons.arrow_back_ios_rounded,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+            appBar: SimpleAppbar(title: 'Product details'),
             body: model.isBusy
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
+                ? LoadingWidget()
                 : SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
