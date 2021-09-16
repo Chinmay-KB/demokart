@@ -114,6 +114,17 @@ class FirestoreService {
         .set(userData);
   }
 
+  /// Creates a new user document for a new user
+  Future<DocumentSnapshot<UserData>> getUserData({required String uid}) async =>
+      _firestoreInstance
+          .collection(FIRESTORE_USER_COLLECTION)
+          .withConverter<UserData>(
+              fromFirestore: (snapshot, _) =>
+                  UserData.fromMap(snapshot.data()!),
+              toFirestore: (model, _) => model.toMap())
+          .doc(uid)
+          .get();
+
   Future<void> addToCart(
           {required String uid, required String productId}) async =>
       _firestoreInstance
@@ -137,7 +148,7 @@ class FirestoreService {
               toFirestore: (model, _) => model.toMap())
           .doc(uid)
           .update({
-        "cart": FieldValue.arrayRemove([uid])
+        "cart": FieldValue.arrayRemove([productId])
       });
 
   Future<void> emptyCart(

@@ -92,10 +92,13 @@ class HomepageView extends StatelessWidget {
                       style: TEXT_HEADING_STYLE.copyWith(
                           color: Colors.white, fontSize: 24),
                     ),
-                    const Icon(
-                      Icons.shopping_cart_rounded,
-                      color: Colors.white,
-                      size: 26,
+                    GestureDetector(
+                      onTap: model.navigateToCart,
+                      child: const Icon(
+                        Icons.shopping_cart_rounded,
+                        color: Colors.white,
+                        size: 26,
+                      ),
                     ),
                   ],
                 ),

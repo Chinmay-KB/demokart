@@ -12,7 +12,8 @@ class UserData {
   factory UserData.fromMap(Map<String, dynamic> json) => UserData(
         email: json["email"] as String,
         name: json["name"] as String,
-        cart: List<String>.from(json["cart"].map((x) => x) as Iterable<String>),
+        cart:
+            List<String>.from(json["cart"].map((x) => x) as Iterable<dynamic>),
       );
 
   Map<String, dynamic> toMap() => {

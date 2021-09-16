@@ -1,3 +1,4 @@
+import 'package:demokart/screens/cart/cart_view.dart';
 import 'package:demokart/screens/checkout/checkout_view.dart';
 import 'package:demokart/screens/homepage/homepage_view.dart';
 import 'package:demokart/screens/login/login_view.dart';
@@ -15,7 +16,8 @@ import 'package:stacked_services/stacked_services.dart';
   MaterialRoute(page: SplashView, initial: true),
   MaterialRoute(page: CheckoutView),
   MaterialRoute(page: LoginView),
-  MaterialRoute(page: ProductDetailView)
+  MaterialRoute(page: ProductDetailView),
+  MaterialRoute(page: CartView)
 ], dependencies: [
   LazySingleton(classType: NavigationService),
   LazySingleton(classType: SnackbarService),

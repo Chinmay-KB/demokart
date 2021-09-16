@@ -9,6 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import 'screens/cart/cart_view.dart';
 import 'screens/checkout/checkout_view.dart';
 import 'screens/homepage/homepage_view.dart';
 import 'screens/login/login_view.dart';
@@ -22,12 +23,14 @@ class Routes {
   static const String checkoutView = '/checkout-view';
   static const String loginView = '/login-view';
   static const String productDetailView = '/product-detail-view';
+  static const String cartView = '/cart-view';
   static const all = <String>{
     homepageView,
     splashView,
     checkoutView,
     loginView,
     productDetailView,
+    cartView,
   };
 }
 
@@ -40,13 +43,17 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.checkoutView, page: CheckoutView),
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.productDetailView, page: ProductDetailView),
+    RouteDef(Routes.cartView, page: CartView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, StackedRouteFactory>{
     HomepageView: (data) {
+      var args = data.getArgs<HomepageViewArguments>(
+        orElse: () => HomepageViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => HomepageView(),
+        builder: (context) => HomepageView(key: args.key),
         settings: data,
       );
     },
@@ -57,8 +64,12 @@ class StackedRouter extends RouterBase {
       );
     },
     CheckoutView: (data) {
+      var args = data.getArgs<CheckoutViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const CheckoutView(),
+        builder: (context) => CheckoutView(
+          key: args.key,
+          items: args.items,
+        ),
         settings: data,
       );
     },
@@ -78,12 +89,31 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    CartView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const CartView(),
+        settings: data,
+      );
+    },
   };
 }
 
 /// ************************************************************************
 /// Arguments holder classes
 /// *************************************************************************
+
+/// HomepageView arguments holder class
+class HomepageViewArguments {
+  final Key? key;
+  HomepageViewArguments({this.key});
+}
+
+/// CheckoutView arguments holder class
+class CheckoutViewArguments {
+  final Key? key;
+  final List<Product> items;
+  CheckoutViewArguments({this.key, required this.items});
+}
 
 /// ProductDetailView arguments holder class
 class ProductDetailViewArguments {

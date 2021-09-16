@@ -72,4 +72,6 @@ class HomepageViewModel extends BaseViewModel {
     _navigatorService.navigateTo(Routes.productDetailView,
         arguments: ProductDetailViewArguments(product: product));
   }
+
+  void navigateToCart() => _navigatorService.navigateTo(Routes.cartView);
 }
