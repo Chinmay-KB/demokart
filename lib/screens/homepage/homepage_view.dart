@@ -161,21 +161,19 @@ class HomepageView extends StatelessWidget {
                           child:
                               Text('All products', style: TEXT_HEADING_STYLE),
                         ),
-                        GridView.builder(
-                          itemCount: model.allProducts.docs.length,
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) =>
-                              HorizontalListViewItem(
-                                  product: model.allProducts.docs[index].data(),
-                                  onTap: model.onTapProduct),
-                          gridDelegate:
-                              SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent:
-                                MediaQuery.of(context).size.width / 2,
-                            childAspectRatio: 150 / 160,
+                        SizedBox(
+                          height: 220,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: model.allProducts.docs.length,
+                            itemBuilder: (BuildContext context, int index) =>
+                                HorizontalListViewItem(
+                              product: model.allProducts.docs[index].data(),
+                              onTap: model.onTapProduct,
+                            ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
