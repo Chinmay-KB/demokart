@@ -19,13 +19,17 @@ class CheckoutViewModel extends BaseViewModel {
     PaymentOptions(name: 'Cash on Delivery', data: 'Rs 40 service charge')
   ];
 
+  /// Stores the index of selected payment type, required to highlight the
+  /// listtile
   int selectedPayment = 0;
 
+  /// Sets payment preference [selectedPayment] when
   void setPayment(int index) {
     selectedPayment = index;
     notifyListeners();
   }
 
+  /// Validates textformfield for the ones which are mandatory to fill.
   String? formValidation(String? value) {
     if (value == null || value.isEmpty) return 'Please enter data';
     return null;
@@ -33,7 +37,10 @@ class CheckoutViewModel extends BaseViewModel {
 
   String? optionalFormField(String? value) => null;
 
-  void proceedToPayment() async {
+  /// When user has filled the required details, only when payment proceeds.
+  /// This method checks for that, and if true, places order successfully, or in
+  /// the case of this demo, clears the cart.
+  Future<void> proceedToPayment() async {
     if (formKey.currentState!.validate()) {
       final _user = await _authService.getUser();
       _firestoreService.emptyCart(uid: _user!.uid);

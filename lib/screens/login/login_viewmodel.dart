@@ -33,7 +33,8 @@ class LoginViewModel extends BaseViewModel {
     }
   }
 
-  onLogout() async {
+  /// Handles user logout, and the navigation
+  Future<void> onLogout() async {
     await _authService.signOutFromGoogle();
     if (!_authService.checkLoggedIn()) {
       _snackbarService.showCustomSnackBar(message: 'Logged out');

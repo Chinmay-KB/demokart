@@ -14,7 +14,7 @@ class SplashViewModel extends BaseViewModel {
 
   late bool isLoggedIn;
 
-  init() async {
+  Future<void> init() async {
     setBusy(true);
     await Future.delayed(const Duration(seconds: 2));
     isLoggedIn = _authService.checkLoggedIn();
@@ -27,6 +27,7 @@ class SplashViewModel extends BaseViewModel {
     setBusy(false);
   }
 
+  /// Handles login, and the respective navigation
   Future<void> onLogin() async {
     await _authService.signInwithGoogle();
     if (_authService.checkLoggedIn()) {
@@ -48,6 +49,7 @@ class SplashViewModel extends BaseViewModel {
     }
   }
 
+  /// Handles logout, not necessary in this screen
   onLogout() async {
     await _authService.signOutFromGoogle();
     if (!_authService.checkLoggedIn()) {

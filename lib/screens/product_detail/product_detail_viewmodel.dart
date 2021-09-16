@@ -34,6 +34,8 @@ class ProductDetailViewModel extends BaseViewModel {
         arguments: ProductDetailViewArguments(productId: product.productId));
   }
 
+  /// Takes productId as parameter and adds it to the `cart` field of user
+  /// document. If item already exists, it does not add it again.
   Future<void> addToCart(String productId) async {
     await _firestoreService.addToCart(uid: _user!.uid, productId: productId);
     _snackbarService.showSnackbar(message: 'Added to cart');

@@ -45,8 +45,7 @@ class HomepageViewModel extends BaseViewModel {
   final _navigatorService = locator<NavigationService>();
   final _authService = locator<AuthService>();
 
-  // ignore: avoid_void_async
-  void init() async {
+  Future<void> init() async {
     setBusy(true);
     bestSellers = await _firestoreService.getBestSellers();
     newArrivals = await _firestoreService.getNewArrivals();
@@ -57,7 +56,8 @@ class HomepageViewModel extends BaseViewModel {
     setBusy(false);
   }
 
-  void logout() async {
+  /// Handles user logout, and navigation
+  Future<void> logout() async {
     await _authService.signOutFromGoogle();
     if (!_authService.checkLoggedIn()) {
       _navigatorService.pushNamedAndRemoveUntil(Routes.splashView,
@@ -76,8 +76,11 @@ class HomepageViewModel extends BaseViewModel {
         arguments: ProductDetailViewArguments(productId: product.productId));
   }
 
+  /// Navigates to cart screen
   void navigateToCart() => _navigatorService.navigateTo(Routes.cartView);
 
+  /// Handles tap on carousel. Depending on the payload, the carousel may either
+  /// lead to a product page or not.
   void carouselTap(String productId) {
     if (productId != "") {
       _navigatorService.navigateTo(Routes.productDetailView,

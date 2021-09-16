@@ -17,6 +17,7 @@ class CartViewModel extends BaseViewModel {
   late int totalCost = 0;
   late bool isCartEmpty;
   late User? _user;
+
   Future<void> init() async {
     setBusy(true);
     cartItems.clear();
@@ -35,6 +36,8 @@ class CartViewModel extends BaseViewModel {
     setBusy(false);
   }
 
+  /// Takes productID as input and removes that item from `cart` array of user
+  /// document.
   Future<void> removeItem(String productId) async {
     await _firestoreService.removeFromCart(
         uid: _user!.uid, productId: productId);
