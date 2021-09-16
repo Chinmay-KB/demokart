@@ -33,7 +33,7 @@ class ProductDetailView extends StatelessWidget {
                     shape: StadiumBorder(),
                     primary: Colors.white,
                     backgroundColor: Theme.of(context).accentColor),
-                onPressed: () {},
+                onPressed: () => model.addToCart(product),
                 icon: Icon(Icons.add_shopping_cart_rounded),
                 label: Text('Add to cart')),
             backgroundColor: Colors.grey.shade200,

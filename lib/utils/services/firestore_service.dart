@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:demokart/utils/datamodels/carousel.dart';
 import 'package:demokart/utils/datamodels/product.dart';
+import 'package:demokart/utils/datamodels/user.dart';
 
 class FirestoreService {
   final _firestoreInstance = FirebaseFirestore.instance;
@@ -91,4 +92,62 @@ class FirestoreService {
               fromFirestore: (snapshot, _) => Product.fromMap(snapshot.data()!),
               toFirestore: (model, _) => model.toMap())
           .get();
+
+  /// Check if the user exists on the database or not.
+  Future<bool> checkUserExists(String uid) async {
+    final _doc = await _firestoreInstance
+        .collection(FIRESTORE_USER_COLLECTION)
+        .doc(uid)
+        .get();
+    return _doc.exists;
+  }
+
+  /// Creates a new user document for a new user
+  Future<void> createNewUser(
+      {required String uid, required UserData userData}) async {
+    await _firestoreInstance
+        .collection(FIRESTORE_USER_COLLECTION)
+        .withConverter<UserData>(
+            fromFirestore: (snapshot, _) => UserData.fromMap(snapshot.data()!),
+            toFirestore: (model, _) => model.toMap())
+        .doc(uid)
+        .set(userData);
+  }
+
+  Future<void> addToCart(
+          {required String uid, required String productId}) async =>
+      _firestoreInstance
+          .collection(FIRESTORE_USER_COLLECTION)
+          .withConverter<UserData>(
+              fromFirestore: (snapshot, _) =>
+                  UserData.fromMap(snapshot.data()!),
+              toFirestore: (model, _) => model.toMap())
+          .doc(uid)
+          .update({
+        "cart": FieldValue.arrayUnion([productId])
+      });
+
+  Future<void> removeFromCart(
+          {required String uid, required String productId}) async =>
+      _firestoreInstance
+          .collection(FIRESTORE_USER_COLLECTION)
+          .withConverter<UserData>(
+              fromFirestore: (snapshot, _) =>
+                  UserData.fromMap(snapshot.data()!),
+              toFirestore: (model, _) => model.toMap())
+          .doc(uid)
+          .update({
+        "cart": FieldValue.arrayRemove([uid])
+      });
+
+  Future<void> emptyCart(
+          {required String uid, required String productId}) async =>
+      _firestoreInstance
+          .collection(FIRESTORE_USER_COLLECTION)
+          .withConverter<UserData>(
+              fromFirestore: (snapshot, _) =>
+                  UserData.fromMap(snapshot.data()!),
+              toFirestore: (model, _) => model.toMap())
+          .doc(uid)
+          .update({"cart": []});
 }

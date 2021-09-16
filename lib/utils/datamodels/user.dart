@@ -1,5 +1,5 @@
-class User {
-  User({
+class UserData {
+  UserData({
     required this.email,
     required this.name,
     required this.cart,
@@ -9,7 +9,7 @@ class User {
   String name;
   List<String> cart;
 
-  factory User.fromMap(Map<String, dynamic> json) => User(
+  factory UserData.fromMap(Map<String, dynamic> json) => UserData(
         email: json["email"] as String,
         name: json["name"] as String,
         cart: List<String>.from(json["cart"].map((x) => x) as Iterable<String>),
